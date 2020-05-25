@@ -17,10 +17,9 @@ namespace WebDriver_Basic
             driver = new ChromeDriver();
             driver.Navigate().GoToUrl("localhost:5000");
             driver.Manage().Window.Maximize();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(5));
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(7);
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(7));
         }   
-
         [Test]
         public void LoginTest()
         {
@@ -40,35 +39,23 @@ namespace WebDriver_Basic
             driver.FindElement(By.CssSelector("input#UnitsInStock")).SendKeys(("13"));
             driver.FindElement(By.CssSelector("input#UnitsOnOrder")).SendKeys(("11"));
             driver.FindElement(By.CssSelector("input.btn.btn-default")).Click();
-            Thread.Sleep(2000);
             Assert.AreNotEqual("Product editing", driver.FindElement(By.CssSelector("h2")).Text);
         }
-
         [Test]
         public void LogoutTest()
         {
             Login();
             driver.FindElement(By.XPath("//ul//a[@href=\"/Account/Logout\"]")).Click();
-            Thread.Sleep(2000);
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath("//input[@Name]")));
             Assert.AreEqual("Login", driver.FindElement(By.CssSelector("h2")).Text);
-
-
         }
-
         private void Login()
         {
             driver.FindElement(By.XPath("//input[@Name]")).SendKeys("user");
-            
-            Thread.Sleep(2000);
             driver.FindElement(By.CssSelector("input#Password")).SendKeys("user");
             driver.FindElement(By.CssSelector("input.btn.btn-default")).Click();
             Assert.AreEqual("Home page", driver.FindElement(By.CssSelector("h2")).Text);
-            Thread.Sleep(2000);
-
         }
-
-
-
         [TearDown]
         public void CleanUp()
         {
