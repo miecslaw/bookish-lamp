@@ -34,7 +34,8 @@ namespace WebDriver_Advanced
             addingPage = new AddingPage(driver);
             Login();
             addingPage.Adding();
-            Assert.AreNotEqual("Product editing", driver.FindElement(By.CssSelector("h2")).Text);
+            Assert.AreNotEqual("Product editing", addingPage.GetTextElementValue());
+            Assert.AreNotEqual(addingPage.CheckingBefore(), addingPage.CheckingAfter());
         }
         [Test]
         public void LogoutTest()
@@ -42,13 +43,13 @@ namespace WebDriver_Advanced
             mainPage = new MainPage(driver);
             Login();
             mainPage.Logout();
-            Assert.AreEqual("Login", driver.FindElement(By.CssSelector("h2")).Text);
+            Assert.AreEqual("Login",mainPage.GetTextElementValue());
         }
         public void Login()
         {
             enteringPage = new EnteringPage(driver);
             enteringPage.Login();
-            Assert.AreEqual("Home page", driver.FindElement(By.CssSelector("h2")).Text);
+            Assert.AreEqual("Home page", enteringPage.GetTextElementValue());
         }
         [TearDown]
         public void CleanUp()
