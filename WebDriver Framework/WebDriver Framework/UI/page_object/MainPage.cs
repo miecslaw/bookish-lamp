@@ -13,9 +13,14 @@ namespace WebDriver_Basic
         }
         private IWebElement logoutButton =>driver.FindElement(By.XPath("//ul//a[@href=\"/Account/Logout\"]"));
         private IWebElement textElement => driver.FindElement(By.CssSelector("h2"));
-        public void Logout()
+        /*public void Logout()
         {
             new Actions(driver).Click(logoutButton).Build().Perform();
+        }*/
+        public MainPage ClickLogout()
+        {
+            new Actions(driver).Click(logoutButton).Build().Perform();
+            return this;
         }
         public string GetTextElementValue()
         {

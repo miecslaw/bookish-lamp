@@ -5283,11 +5283,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\source\\repos\\WebDriver Framework\\WebDriver Framework\\WebDriver Framework.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\bookish-lamp\\WebDriver Framework\\WebDriver Framework\\WebDriver Framework.csproj",
       "projectName": "WebDriver Framework",
-      "projectPath": "C:\\Users\\user\\source\\repos\\WebDriver Framework\\WebDriver Framework\\WebDriver Framework.csproj",
+      "projectPath": "C:\\Users\\user\\Desktop\\bookish-lamp\\WebDriver Framework\\WebDriver Framework\\WebDriver Framework.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\source\\repos\\WebDriver Framework\\WebDriver Framework\\obj\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\bookish-lamp\\WebDriver Framework\\WebDriver Framework\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

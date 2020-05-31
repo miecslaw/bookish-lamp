@@ -3,13 +3,13 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using WebDriver_Basic;
 using WebDriver_Basic.Business_object;
+using WebDriver_Basic.Service.UI;
 
 namespace WebDriver_Advanced
 {
     public class Tests
     {
         private IWebDriver driver;
-        //private WebDriverWait wait;
         private EnteringPage enteringPage;
         private AddingPage addingPage;
         private MainPage mainPage;
@@ -20,7 +20,7 @@ namespace WebDriver_Advanced
                                                     "10",
                                                     "13",
                                                     "11");
-        private User testNameAnPassword = new User("user",
+        private User testNameAndPassword = new User("user",
                                                    "user");
         [SetUp]
         public void Setup()
@@ -32,30 +32,29 @@ namespace WebDriver_Advanced
         [Test]
         public void LoginTest()
         {
-            Login();
+            enteringPage = ProductsService.Login(testNameAndPassword, driver);
+            Assert.AreEqual("Home page", enteringPage.GetTextElementValue());
         }
         [Test]
         public void AddProduct()
         {
-            addingPage = new AddingPage(driver);
-            Login();
-            addingPage.Adding(testProduct);
-            Assert.AreNotEqual("Product editing", addingPage.GetTextElementValue());
-            Assert.AreNotEqual(addingPage.CheckingBefore(), addingPage.CheckingAfter());
+            enteringPage = ProductsService.Login(testNameAndPassword, driver);
+            addingPage = ProductsService.AddingProduct(testProduct, driver);
+            Assert.AreEqual("Test111Product", testProduct.productName);
+            Assert.AreEqual("Produce", testProduct.categoryName);
+            Assert.AreEqual("Tokyo Traders", testProduct.supplierName);
+            Assert.AreEqual("2", testProduct.unitPrice);
+            Assert.AreEqual("10", testProduct.quantityPerUnit);
+            Assert.AreEqual("13", testProduct.unitInStock);
+            Assert.AreEqual("11", testProduct.unitInOrder);
         }
+
         [Test]
         public void LogoutTest()
         {
-            mainPage = new MainPage(driver);
-            Login();
-            mainPage.Logout();
+            enteringPage = ProductsService.Login(testNameAndPassword, driver);
+            mainPage = ProductsService.ClickLogout(driver);
             Assert.AreEqual("Login",mainPage.GetTextElementValue());
-        }
-        public void Login()
-        {
-            enteringPage = new EnteringPage(driver);
-            enteringPage.LoginTest(testNameAnPassword);
-            Assert.AreEqual("Home page", enteringPage.GetTextElementValue());
         }
         [TearDown]
         public void CleanUp()

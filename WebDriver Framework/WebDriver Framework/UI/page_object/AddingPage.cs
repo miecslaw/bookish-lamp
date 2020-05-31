@@ -13,7 +13,8 @@ namespace WebDriver_Basic
         {
             this.driver = driver;
         }
-        string firstLast, secondLast;
+        IWebElement productName, secondLast;
+
 
         private IWebElement allProductsLink => driver.FindElement(By.XPath("//ul//a[@href=\"/Product\"]"));
         private IWebElement createNewButton => driver.FindElement(By.CssSelector("a.btn.btn-default"));
@@ -26,13 +27,11 @@ namespace WebDriver_Basic
         private IWebElement unitsOnOrderInput => driver.FindElement(By.CssSelector("input#UnitsOnOrder"));
         private IWebElement sendButton => driver.FindElement(By.CssSelector("input.btn.btn-default"));
         private IWebElement textElement => driver.FindElement(By.CssSelector("h2"));
-        private IWebElement firstlast => driver.FindElement(By.XPath(".//*[@class='table']/tbody/tr[last()]"));
-        private IWebElement secondlast => driver.FindElement(By.XPath(".//*[@class='table']/tbody/tr[last()]"));
-
-        public void Adding(Products testProduct)
+        private IWebElement lastElement => driver.FindElement(By.XPath($".//*[@class='table']/tbody/tr[last()]/td/a"));
+        
+        public AddingPage Adding(Products testProduct)
         {
             new Actions(driver).Click(allProductsLink).Build().Perform();
-            firstLast = Convert.ToString(firstlast.GetHashCode());
             new Actions(driver).Click(createNewButton).Build().Perform();
             new Actions(driver).Click(productInput).SendKeys(testProduct.productName).Build().Perform();
             new Actions(driver).Click(categorySelect).SendKeys(testProduct.categoryName).Build().Perform();
@@ -42,28 +41,32 @@ namespace WebDriver_Basic
             new Actions(driver).Click(unitInStockInput).SendKeys(testProduct.unitInStock).Build().Perform();
             new Actions(driver).Click(unitsOnOrderInput).SendKeys(testProduct.unitInOrder).Build().Perform();
             new Actions(driver).Click(sendButton).Build().Perform();
-            new Actions(driver).Click(secondlast).Build().Perform();
-            new Actions(driver).Click(allProductsLink).Build().Perform();
-            secondLast = Convert.ToString(secondlast.GetHashCode());
-            Thread.Sleep(2000);
-
-
+            new Actions(driver).Click(lastElement).Build().Perform();
+            return this;
         }
+        public AddingPage OpeningLastElement()
+        {
+            new Actions(driver).Click(lastElement).Build().Perform();
+            return this;
+        }
+        public string GetProductName()
+        {
+            return productName.Text;
+        }
+        public AddingPage ClickButton()
+        {
+            new Actions(driver).Click(sendButton).Build().Perform();
+            return this;
+        }
+        public AddingPage CheckLastProduct()
+        {
+            new Actions(driver).Click(lastElement).Build().Perform();
+            return this;
+        }
+
         public string GetTextElementValue()
         {
             return textElement.Text;
-        }
-
-        public string CheckingBefore()
-        {
-
-            return firstLast;
-            
-        }
-
-       public string CheckingAfter()
-        {
-            return secondLast;
         }
     }
 }

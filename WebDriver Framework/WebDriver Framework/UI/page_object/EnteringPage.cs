@@ -16,15 +16,20 @@ namespace WebDriver_Basic
         private IWebElement nameInput => driver.FindElement(By.XPath("//input[@Name]"));
         private IWebElement passwordInput =>driver.FindElement(By.CssSelector("input#Password"));
         private IWebElement loginButton => driver.FindElement(By.CssSelector("input.btn.btn-default"));
-        public void LoginTest (User testNameAnPassword)
+        public EnteringPage LoginTest (User testNameAndPassword)
         {
-            new Actions(driver).Click(nameInput).SendKeys(testNameAnPassword.Name).Build().Perform();
-            new Actions(driver).Click(passwordInput).SendKeys(testNameAnPassword.Password).Build().Perform();
-            new Actions(driver).Click(loginButton).Build().Perform();
+            new Actions(driver).Click(nameInput).SendKeys(testNameAndPassword.Name).Build().Perform();
+            new Actions(driver).Click(passwordInput).SendKeys(testNameAndPassword.Password).Build().Perform();
+            return this;
         }
         public string GetTextElementValue()
         {
             return textElement.Text;
+        }
+        public EnteringPage ClickButton()
+        {
+            new Actions(driver).Click(loginButton).Build().Perform();
+            return this;
         }
 
     }
