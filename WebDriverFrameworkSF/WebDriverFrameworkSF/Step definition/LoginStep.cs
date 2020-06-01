@@ -36,18 +36,52 @@ namespace WebDriverFrameworkSF.step_definition
             new EnteringPage(driver).GetPassword(password);
         }
 
-        [When(@"I click on Send-button")]
+        [When(@"I click on the button Send")]
         public void WhenIClickOnTheButtonSend()
         {
             new EnteringPage(driver).SendButtonClick();
         }
 
-        [Then(@"I see headline ""(.*)"" on page")]
-        public void ThenIseeheadlineonpage (string nameProduct)
+        [When(@"I click on the button AllProducts")]
+        public void WhenIClickOnTheAllProductButton()
         {
-            MainPage mainPage = new MainPage(driver);
-            Assert.AreEqual("Home page", mainPage.GetHeadline());
+            new HomePage(driver).AllProductView();
         }
-        
+
+        [When(@"I click on the button CreateNew")]
+        public void WhenIClickOnTheCreateNewButton()
+        {
+            new ProductsPage(driver).createButtonClick();
+        }
+
+        [When(@"I enter the product info in the field: NameProduct ""(.*)"", UnitPrice ""(.*)"", QuantityPerUnit ""(.*)"", UnitInStock ""(.*)"", UnitsOnOrder ""(.*)""")]
+        public void WhenIEnterTheProductInfoInTheField(string nameProduct, string costUnitPrice, string numberQuantityPerUnit, string numberUnitsInStock, string unitsOnOrder)
+        {
+            CreateNewPage createProductPage = new CreateNewPage(driver);
+            createProductPage = createProductPage.InputProduct(new Products(nameProduct, costUnitPrice, numberQuantityPerUnit, numberUnitsInStock, unitsOnOrder));
+
+
+        }
+
+        [When(@"I select category ""(.*)"" and supplier ""(.*)"" in the fields")]
+        public void WhenISelectTCategoryAndSupplierInTheFields(int category, int supplier)
+        {
+            new CreateNewPage(driver).CategorySupplierClick(category, supplier);
+        }
+
+        [When(@"I click on the button CreateProduct")]
+        public void WhenIClickOnTheButtonCreateProduct()
+        {
+            new CreateNewPage(driver).ClickCreateButton();
+        }
+        [Then(@"I see product ""(.*)"" in the table All Product")]
+        public void ThenIseeTheCreatedProductInTheTable(string nameProduct)
+        {
+            ProductsPage productsPage = new ProductsPage(driver);
+
+            Assert.AreEqual("TestProduct", productsPage.GetProductName(nameProduct));
+
+        }
+
     }
 }

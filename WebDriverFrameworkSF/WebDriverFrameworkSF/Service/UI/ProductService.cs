@@ -15,6 +15,16 @@ namespace WebDriverFrameworkSF.service.UI
             return new EnteringPage(driver);
         }
 
+        public static ProductsPage CreateProduct(Products product, IWebDriver driver)
+        {
+            HomePage homePage = new HomePage(driver);
+            ProductsPage productsPage = homePage.AllProductView();
+            CreateNewPage createNewPage = productsPage.createButtonClick();
+            createNewPage = createNewPage.InputProduct(product);
+            productsPage = createNewPage.ClickCreateButton();
+            return new ProductsPage(driver);
+        }
+
     }
 }
 

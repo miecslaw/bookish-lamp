@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Downloads\\Work5-6-master\\Work5-6-master\\NUnitTest_Work5\\NUnitTest_Work5\\WebDriverFrameworkSF.csproj": {}
+    "C:\\Users\\user\\Desktop\\WebDriverFrameworkSF\\WebDriverFrameworkSF\\WebDriverFrameworkSF.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Downloads\\Work5-6-master\\Work5-6-master\\NUnitTest_Work5\\NUnitTest_Work5\\WebDriverFrameworkSF.csproj": {
+    "C:\\Users\\user\\Desktop\\WebDriverFrameworkSF\\WebDriverFrameworkSF\\WebDriverFrameworkSF.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Downloads\\Work5-6-master\\Work5-6-master\\NUnitTest_Work5\\NUnitTest_Work5\\WebDriverFrameworkSF.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\WebDriverFrameworkSF\\WebDriverFrameworkSF\\WebDriverFrameworkSF.csproj",
         "projectName": "WebDriverFrameworkSF",
-        "projectPath": "C:\\Users\\user\\Downloads\\Work5-6-master\\Work5-6-master\\NUnitTest_Work5\\NUnitTest_Work5\\WebDriverFrameworkSF.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\WebDriverFrameworkSF\\WebDriverFrameworkSF\\WebDriverFrameworkSF.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Downloads\\Work5-6-master\\Work5-6-master\\NUnitTest_Work5\\NUnitTest_Work5\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\WebDriverFrameworkSF\\WebDriverFrameworkSF\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
